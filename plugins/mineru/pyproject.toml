@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ob-harness-mineru"
+version = "0.1.0"
+description = "Optional MinerU PDF parsing tool for the independent OB Harness"
+readme = "README.md"
+requires-python = ">=3.11,<3.15"
+dependencies = ["ob-harness>=0.1.0", "mineru>=4.0,<5"]
+
+[project.entry-points."ob_harness.tools"]
+mineru = "ob_harness_mineru:plugin"
+
+[tool.setuptools.packages.find]
+where = ["src"]

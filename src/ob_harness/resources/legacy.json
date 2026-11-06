@@ -1,0 +1,10 @@
+{
+  "experiment_name": "packaged_extraction",
+  "ontology_path": "ontology.json",
+  "output_dir": "outputs",
+  "prompt_path": "extraction.md",
+  "chunking": {"max_chars": 2400, "overlap_chars": 100},
+  "retrieval": {"strategy": "keyword", "top_k": 10},
+  "context": {"strategy": "template", "max_input_bytes": 32000},
+  "llm": {"provider": "replay", "responses_path": "extraction-replay.json"}
+}

@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>Ontology Harness</title>
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand">
+        <div class="brand-mark">OH</div>
+        <div class="brand-copy">
+          <strong>Ontology Harness</strong>
+          <span data-i18n="brand.tagline">本地本体对话</span>
+        </div>
+      </div>
+
+      <button class="new-chat" id="new-chat" type="button">
+        <span aria-hidden="true">+</span> <span data-i18n="newChat">新对话</span>
+      </button>
+
+      <section class="panel">
+        <div class="panel-title" data-i18n="panel.currentOntology">当前本体</div>
+        <div class="ontology-name" id="ontology-id" data-i18n="ontology.loading">加载中…</div>
+        <div class="meta" id="ontology-meta" data-i18n="ontology.reading">正在读取工作区</div>
+        <div class="stats">
+          <div class="stat">
+            <span id="concept-count">-</span>
+            <small data-i18n="stat.concept">概念</small>
+          </div>
+          <div class="stat">
+            <span id="relation-count">-</span>
+            <small data-i18n="stat.relation">关系</small>
+          </div>
+          <div class="stat">
+            <span id="version-label">-</span>
+            <small data-i18n="stat.version">版本</small>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel">
+        <label class="field-label" for="planner" data-i18n="planner.label">规划器</label>
+        <select id="planner">
+          <option value="scripted" data-i18n="planner.scripted">scripted · 离线确定性</option>
+          <option value="llm" data-i18n="planner.llm">llm · 使用已配置模型</option>
+        </select>
+        <label class="check">
+          <input id="use-memory" type="checkbox">
+          <span data-i18n="memory.use">使用长期记忆</span>
+        </label>
+      </section>
+
+      <div class="sidebar-footer">
+        <span class="shield" aria-hidden="true">◇</span>
+        <span data-i18n="sidebar.footer">只读查询 · 不自动提交本体</span>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <button class="menu-button" id="menu-button" type="button" data-i18n-aria-label="menu.open" aria-label="打开侧栏">☰</button>
+        <div class="topbar-copy">
+          <h1 id="view-title" data-i18n="view.titleChat">本体对话</h1>
+          <p id="status-line" data-i18n="connection.connecting">正在连接本地服务…</p>
+        </div>
+        <nav class="view-switch" data-i18n-aria-label="view.switchAria" aria-label="切换视图">
+          <button id="view-chat" type="button" aria-pressed="true" data-i18n-title="view.chatTitle" title="返回对话">
+            <span class="view-icon" aria-hidden="true">◌</span><span data-i18n="view.chat">对话</span>
+          </button>
+          <button id="view-graph" type="button" aria-pressed="false" data-i18n-title="view.graphTitle" title="查看概念与关系全景图">
+            <span class="view-icon" aria-hidden="true">◈</span><span data-i18n="view.graph">全景图</span>
+          </button>
+        </nav>
+        <button class="lang-switch" id="lang-toggle" type="button" aria-label="切换到英文" title="切换到英文">
+          <span class="lang-option" data-lang-option="zh">中</span>
+          <span class="lang-option" data-lang-option="en">EN</span>
+        </button>
+        <span class="badge badge-pending" id="connection" data-i18n="connection.connecting">连接中</span>
+      </header>
+
+      <section class="messages" id="messages" aria-live="polite">
+        <div class="welcome" id="welcome">
+          <div class="welcome-mark">◇</div>
+          <h2 data-i18n="welcome.title">从已提交的本体开始提问</h2>
+          <p data-i18n="welcome.body">回答只引用当前工作区中的本体记录，不会修改或提交任何内容。</p>
+          <div class="suggestions">
+            <button type="button" data-prompt="mammal" data-i18n="suggestion.mammal">解释 mammal</button>
+            <button type="button" data-prompt="Animal" data-i18n="suggestion.animal">Animal 是什么？</button>
+            <button type="button" data-prompt="mammal 与 Animal 的关系" data-i18n="suggestion.relation">mammal 与 Animal 的关系</button>
+          </div>
+        </div>
+      </section>
+
+      <section id="graph-view" class="graph-view" data-i18n-aria-label="view.graphTitle" aria-label="本体全景图" hidden>
+        <div class="graph-toolbar">
+          <div class="graph-toolbar-group">
+            <select id="graph-source" data-i18n-aria-label="graph.sourceAria" aria-label="本体版本来源"><option value="formal" data-i18n="graph.source.formal">正式本体</option><option value="draft" data-i18n="graph.source.draft" disabled>当前会话草案</option></select>
+            <input id="graph-search" type="search" data-i18n-placeholder="graph.searchPlaceholder" placeholder="搜索名称、别名或 ID" data-i18n-aria-label="graph.searchAria" aria-label="搜索概念">
+            <button id="graph-find" type="button"><span class="tool-icon" aria-hidden="true">⌖</span><span data-i18n="graph.find">定位</span></button>
+          </div>
+          <div class="graph-toolbar-group graph-toolbar-actions">
+            <select id="graph-relation" data-i18n-aria-label="graph.relationAria" aria-label="显示关系类型"><option value="" data-i18n="graph.relationAll">全部关系</option></select>
+            <button id="graph-refresh" type="button"><span class="tool-icon" aria-hidden="true">↻</span><span data-i18n="graph.refresh">刷新</span></button>
+            <button id="graph-fit" type="button"><span class="tool-icon" aria-hidden="true">⤢</span><span data-i18n="graph.fit">适应画布</span></button>
+            <div class="graph-zoom" role="group" data-i18n-aria-label="graph.zoom" aria-label="缩放">
+              <button id="graph-zoom-in" type="button" data-i18n-aria-label="graph.zoomIn" aria-label="放大" data-i18n-title="graph.zoomIn" title="放大">＋</button>
+              <button id="graph-zoom-out" type="button" data-i18n-aria-label="graph.zoomOut" aria-label="缩小" data-i18n-title="graph.zoomOut" title="缩小">−</button>
+            </div>
+          </div>
+        </div>
+        <div class="graph-meta">
+          <p id="graph-status" class="graph-status" role="status" data-i18n="graph.loading">正在读取本体…</p>
+          <div id="graph-legend" class="graph-legend" data-i18n-aria-label="graph.legendAria" aria-label="概念颜色图例" hidden></div>
+        </div>
+        <div class="graph-body">
+          <div class="graph-canvas" id="graph-canvas">
+            <svg id="ontology-graph" role="img" data-i18n-aria-label="graph.svgAria" aria-label="概念节点与有向关系全景图"></svg>
+            <span class="graph-help" data-i18n="graph.help">滚轮缩放 · 拖动空白平移 · 拖动节点布局 · 点击节点查看详情</span>
+          </div>
+          <aside id="graph-detail" class="graph-detail" data-i18n-aria-label="graph.detailTitle" aria-label="概念详情"><h2 data-i18n="graph.detailTitle">概念详情</h2><p data-i18n="graph.detailHint">点击节点查看定义、别名及相邻关系。</p></aside>
+        </div>
+      </section>
+
+      <form class="composer" id="composer">
+        <textarea id="input" rows="1" maxlength="8000"
+          data-i18n-placeholder="composer.placeholder" placeholder="问一个关于本体的问题，例如：mammal 是什么？" data-i18n-aria-label="composer.aria" aria-label="输入问题"></textarea>
+        <button class="send-button" id="send" type="submit" data-i18n-aria-label="send" aria-label="发送"><span data-i18n="send">发送</span></button>
+      </form>
+      <div class="hint" data-i18n="hint">Enter 发送 · Shift+Enter 换行 · 回答来自指定本体版本</div>
+    </main>
+  </div>
+
+  <div class="backdrop" id="backdrop" hidden></div>
+  <script src="/static/i18n.js" defer></script>
+  <script src="/static/app.js" defer></script>
+  <script src="/static/graph-layout.js" defer></script>
+  <script src="/static/graph.js" defer></script>
+</body>
+</html>

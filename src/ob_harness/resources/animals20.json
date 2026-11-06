@@ -1,0 +1,142 @@
+[
+  {
+    "id": "animal",
+    "name": "Animal",
+    "label": "动物",
+    "definition": "以摄取有机物获取营养的多细胞生物。",
+    "parent": null
+  },
+  {
+    "id": "vertebrate",
+    "name": "Vertebrate",
+    "label": "脊椎动物",
+    "definition": "具有脊柱的动物。",
+    "parent": "animal"
+  },
+  {
+    "id": "invertebrate",
+    "name": "Invertebrate",
+    "label": "无脊椎动物",
+    "definition": "不具有脊柱的动物的统称。",
+    "parent": "animal"
+  },
+  {
+    "id": "mammal",
+    "name": "Mammal",
+    "label": "哺乳动物",
+    "definition": "具有乳腺、以乳汁哺育幼体的脊椎动物。",
+    "parent": "vertebrate"
+  },
+  {
+    "id": "bird",
+    "name": "Bird",
+    "label": "鸟类",
+    "definition": "具有羽毛的脊椎动物。",
+    "parent": "vertebrate"
+  },
+  {
+    "id": "fish",
+    "name": "Fish",
+    "label": "鱼类",
+    "definition": "主要生活在水中、通常用鳃呼吸的脊椎动物的传统统称。",
+    "parent": "vertebrate"
+  },
+  {
+    "id": "reptile",
+    "name": "Reptile",
+    "label": "爬行动物",
+    "definition": "传统分类中包括龟、蛇、蜥蜴和鳄等类群的脊椎动物。",
+    "parent": "vertebrate"
+  },
+  {
+    "id": "amphibian",
+    "name": "Amphibian",
+    "label": "两栖动物",
+    "definition": "包括蛙、蟾蜍和蝾螈等类群的脊椎动物。",
+    "parent": "vertebrate"
+  },
+  {
+    "id": "arthropod",
+    "name": "Arthropod",
+    "label": "节肢动物",
+    "definition": "具有外骨骼和分节附肢的无脊椎动物。",
+    "parent": "invertebrate"
+  },
+  {
+    "id": "insect",
+    "name": "Insect",
+    "label": "昆虫",
+    "definition": "成体具有三对足，身体通常分为头、胸、腹的节肢动物。",
+    "parent": "arthropod"
+  },
+  {
+    "id": "butterfly",
+    "name": "Butterfly",
+    "label": "蝴蝶",
+    "definition": "鳞翅目中通常具有棒状触角的昆虫类群。",
+    "parent": "insect"
+  },
+  {
+    "id": "bee",
+    "name": "Bee",
+    "label": "蜜蜂",
+    "definition": "蜜蜂属昆虫的统称。",
+    "parent": "insect"
+  },
+  {
+    "id": "dog",
+    "name": "Dog",
+    "label": "犬",
+    "definition": "由狼驯化而来的家养哺乳动物。",
+    "parent": "mammal"
+  },
+  {
+    "id": "cat",
+    "name": "Cat",
+    "label": "家猫",
+    "definition": "猫科的家养哺乳动物。",
+    "parent": "mammal"
+  },
+  {
+    "id": "whale",
+    "name": "Whale",
+    "label": "鲸",
+    "definition": "鲸类水生哺乳动物的统称。",
+    "parent": "mammal"
+  },
+  {
+    "id": "dolphin",
+    "name": "Dolphin",
+    "label": "海豚",
+    "definition": "齿鲸中通常称为海豚的水生哺乳动物类群。",
+    "parent": "whale"
+  },
+  {
+    "id": "bat",
+    "name": "Bat",
+    "label": "蝙蝠",
+    "definition": "前肢演化为翼、能够主动飞行的哺乳动物。",
+    "parent": "mammal"
+  },
+  {
+    "id": "sparrow",
+    "name": "Sparrow",
+    "label": "麻雀",
+    "definition": "雀属鸟类的统称。",
+    "parent": "bird"
+  },
+  {
+    "id": "penguin",
+    "name": "Penguin",
+    "label": "企鹅",
+    "definition": "企鹅科中适应水中游泳而不能飞行的鸟类。",
+    "parent": "bird"
+  },
+  {
+    "id": "shark",
+    "name": "Shark",
+    "label": "鲨鱼",
+    "definition": "属于软骨鱼类、通常具有多个外露鳃裂的鱼类。",
+    "parent": "fish"
+  }
+]

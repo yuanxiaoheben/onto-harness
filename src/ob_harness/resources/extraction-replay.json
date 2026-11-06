@@ -1,0 +1,52 @@
+[
+  {
+    "match": {
+      "task": "extract",
+      "input_hash": "75e3cc31bdf2bf96df33186b708545b40f6791577a600f2b926cfa55957edc23"
+    },
+    "response": {
+      "entities": [
+        {
+          "id": "e1",
+          "name": "Whale",
+          "type": "concept",
+          "ontology_id": null,
+          "properties": {},
+          "evidence": [
+            {
+              "quote": "A whale is a mammal that lives in water.",
+              "start": 0,
+              "end": 40
+            }
+          ]
+        }
+      ],
+      "relations": []
+    }
+  },
+  {
+    "match": {
+      "task": "extract",
+      "input_hash": "cf253a1292af7a33a92cc11ddb43ae3a33b94a87536c9d8abdc60fa840d43d68"
+    },
+    "response": {
+      "entities": [
+        {
+          "id": "e1",
+          "name": "Blue whale",
+          "type": "concept",
+          "ontology_id": null,
+          "properties": {},
+          "evidence": [
+            {
+              "quote": "A blue whale is a kind of whale.",
+              "start": 0,
+              "end": 32
+            }
+          ]
+        }
+      ],
+      "relations": []
+    }
+  }
+]

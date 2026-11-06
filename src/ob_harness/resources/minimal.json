@@ -1,0 +1,25 @@
+{
+  "ontology": {
+    "metadata": {"name": "Original demonstration taxonomy", "scope": "animal concepts"},
+    "entities": [
+      {"id": "animal", "name": "Animal", "type": "concept", "definition": "A living organism that feeds on organic matter.", "aliases": []},
+      {"id": "mammal", "name": "Mammal", "type": "concept", "definition": "An animal of the class Mammalia.", "aliases": []}
+    ],
+    "relations": [{"id": "mammal-is-animal", "source": "mammal", "target": "animal", "type": "is_a"}]
+  },
+  "schema": {
+    "schema_version": 1,
+    "concept_types": ["concept"],
+    "relation_types": {"is_a": {"hierarchical": true, "direction": "child_to_parent", "source_types": ["concept"], "target_types": ["concept"]}}
+  },
+  "documents": [
+    {"text": "A whale is a mammal that lives in water.", "response": {
+      "concepts": [{"id": "new-whale", "name": "Whale", "type": "concept", "definition": "A mammal that lives in water.", "aliases": []}],
+      "relations": [{"source": "new-whale", "target": "mammal", "type": "is_a"}]
+    }},
+    {"text": "A blue whale is a kind of whale.", "response": {
+      "concepts": [{"id": "new-blue-whale", "name": "Blue whale", "type": "concept", "definition": "A kind of whale.", "aliases": []}],
+      "relations": [{"source": "new-blue-whale", "target": "@whale", "type": "is_a"}]
+    }}
+  ]
+}

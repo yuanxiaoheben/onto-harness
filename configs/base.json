@@ -1,0 +1,26 @@
+{
+  "experiment_name": "ontology_extraction_baseline",
+  "ontology_path": "../src/ob_harness/resources/ontology.json",
+  "output_dir": "../outputs",
+  "prompt_path": "../prompts/extraction.md",
+  "chunking": {
+    "max_chars": 2400,
+    "overlap_chars": 200
+  },
+  "retrieval": {
+    "strategy": "keyword",
+    "top_k": 20,
+    "parameters": {}
+  },
+  "context": {
+    "strategy": "template",
+    "parameters": {}
+  },
+  "llm": {
+    "provider": "replay",
+    "responses_path": "../src/ob_harness/resources/extraction-replay.json",
+    "parameters": {
+      "temperature": 0
+    }
+  }
+}

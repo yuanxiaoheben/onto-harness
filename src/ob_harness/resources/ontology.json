@@ -1,0 +1,8 @@
+{
+  "metadata": {"name": "Original demonstration taxonomy"},
+  "entities": [
+    {"id": "animal", "name": "Animal", "type": "concept", "definition": "A living organism that feeds on organic matter."},
+    {"id": "mammal", "name": "Mammal", "type": "concept", "definition": "An animal of the class Mammalia."}
+  ],
+  "relations": [{"id": "mammal-is-animal", "source": "mammal", "target": "animal", "type": "is_a"}]
+}
